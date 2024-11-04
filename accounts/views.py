@@ -37,6 +37,6 @@ class TokenVerifyView(APIView):
         try:
             token = request.headers.get('Authorization').split(' ')[1]
             auth.get_validated_token(token)
-            return Response({"message": "توکن معتبر است"}, status=status.HTTP_200_OK)
+            return Response({"message": "token is valid"}, status=status.HTTP_200_OK)
         except (InvalidToken, AttributeError):
-            return Response({"message": "توکن معتبر نیست یا کاربر موجود نیست"}, status=status.HTTP_401_UNAUTHORIZED)
+            return Response({"message": "token is not valid or the user does not exist"}, status=status.HTTP_401_UNAUTHORIZED)
